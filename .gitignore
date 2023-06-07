@@ -1,2 +1,5 @@
 **/obj/**/*
 **/bin/**/*
+app/**/*
+**/.DS_Store
+**/.vscode/**/*
