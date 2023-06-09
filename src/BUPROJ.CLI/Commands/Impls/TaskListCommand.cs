@@ -22,13 +22,16 @@ internal class TaskListCommand : ICommand
 
         for (int i = 0; i < count; i++) {
             var cur = BuTask.CreateFromFileLine(i, lines[i]);
-
-            if(i + 1 >= count) {
-                yield return cur;
+            if (cur == null) {
                 continue;
             }
 
             var next = BuTask.CreateFromFileLine(i + 1, lines[i + 1]);
+            if (next == null || i + 1 >= count) {
+                yield return cur;
+                continue;
+            }
+
             if(cur.Layer >= next.Layer) {
                 yield return cur;
                 continue;
